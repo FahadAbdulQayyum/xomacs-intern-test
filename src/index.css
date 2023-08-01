@@ -1,0 +1,191 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
+
+:root {
+  /* --primaryColor: lime;
+  --secondColor: limegreen; */
+
+  --primaryColor: #2ecc71;
+  --secondColor: #2ecb71;
+
+  --range1st: #f89e68;
+  --range2nd: #febd5c;
+  --range3rd: #f6e763;
+  --range4th: #bae17c;
+}
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(233, 230, 230);
+  font-family: 'Manrope', sans-serif;
+}
+
+button {
+  cursor: pointer;
+  transition: .4s;
+}
+
+button:hover {
+  transform: scale(1.03);
+}
+
+.card {
+  width: 60%;
+  margin: 80px auto;
+  background-color: whitesmoke;
+  padding: 50px 60px;
+  border-radius: 10px;
+  box-shadow: 1px 1px 10px 1px lightgray;
+  position: relative;
+}
+
+.card .progress-bar {
+  background-color: var(--primaryColor);
+  height: 8px;
+  width: 35%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+}
+
+.card .first-block {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card .first-block .left small {
+  color: grey;
+}
+
+.card .first-block .left .star {
+  font-size: 25px;
+}
+
+.card .first-block .right .timer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card .first-block .right .timer .logo {
+  font-size: 25px;
+}
+
+.card .second-block .form .question {
+  margin: 30px 0;
+  color: rgb(66, 64, 64);
+}
+
+.card .second-block .form .choices {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 30px;
+}
+
+.card .second-block .form .choices h3 {
+  border: 1px solid lightgrey;
+  padding: 15px 20px;
+  border-radius: 10px;
+  color: grey;
+  font-weight: 500;
+}
+
+.card .second-block .form .choices h3:hover {
+  /* background-color: lightgray; */
+  background-color: var(--primaryColor);
+  cursor: pointer;
+  color: white;
+}
+
+/* .card .second-block .form .choices h3:active {
+  background-color: var(--primaryColor);
+} */
+
+/* .card .second-block .form .choices h3:nth-child(3) {
+  background-color: var(--secondColor);
+  color: white;
+} */
+
+.card .second-block .button,
+.card .second-block .remark {
+  margin: 50px 0;
+  text-align: center;
+}
+
+.card .second-block .remark h1 {
+  color: var(--secondColor);
+  font-weight: bolder;
+}
+
+.card .second-block .button button {
+  background-color: rgb(66, 64, 64);
+  color: white;
+  border: 0;
+  padding: 15px 50px;
+  font-size: 18px;
+  border-radius: 10px;
+}
+
+.card .score-range {
+  margin: 100px 0 0 0;
+}
+
+.card .score-range .txt {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card .score-range .range {
+  background-color: var(--range4th);
+  height: 30px;
+  width: 100%;
+  border-radius: 20px;
+  margin: 20px 0 0 0;
+  border: 5px solid whitesmoke;
+  box-shadow: 1px 1px 10px 1px lightgray;
+  overflow: hidden;
+  position: relative;
+}
+
+.card .score-range .range .ft {
+  height: 20px;
+  border-radius: 15px;
+  border-right: 1px solid white;
+  position: absolute;
+}
+
+.card .score-range .range .ft-1 {
+  width: 55%;
+  background-color: var(--range1st);
+  z-index: 3;
+}
+
+.card .score-range .range .ft-2 {
+  width: 70%;
+  background-color: var(--range2nd);
+  z-index: 2;
+}
+
+.card .score-range .range .ft-3 {
+  width: 80%;
+  background-color: var(--range3rd);
+  z-index: 1;
+}
+
+.card .second-block .form .choices .selected-answer{
+  /* background-color: coral; */
+  background-color: darksalmon;
+}
+
+.card .second-block .form .choices .unselected-answer{
+  /* background-color: coral; */
+  /* background-color: var(--primaryColor); */
+  background-color: lightgray;
+}
