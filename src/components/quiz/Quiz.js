@@ -87,8 +87,15 @@ const Quiz = () => {
                                     onClick={() => onAnswerSelected(a,ii)} 
                                     key={ii}
                                     // className={selectedAnswerIndex === ii ? 'selected-answer' : null}
-                                    className={selectedAnswer ? 'selected-answer' : null}
-                                    style={{backgroundColor: selectedAnswerIndex !==null && (a === questions[activeQuestion].correct_answer ? "#2ecc71": "darksalmon")}}
+                                    // className={selectedAnswer ? 'selected-answer' : null}
+
+                                    // style={{backgroundColor: selectedAnswerIndex !==null && (a === questions[activeQuestion].correct_answer ? "#2ecc71": "darksalmon")}}
+
+                                    style={{color: selectedAnswerIndex !==null && (a === questions[activeQuestion].correct_answer ? "#2ecc71" : "darksalmon")}}
+
+                                    // style={{color: selectedAnswerIndex !==null && (a === questions[activeQuestion].correct_answer && "#2ecc71")}}
+                                    // style={{backgroundColor: selectedAnswerIndex !==null && (a === questions[activeQuestion].correct_answer && "darksalmon")}}
+
                                     // className={selectedAnswer ? 'selected-answer' : 'unselected-answer'}
                                 >{a.replaceAll("%20", " ")}</h3>
                                 // >{console.log(v.correct_answer)}</h3>
