@@ -51,6 +51,8 @@ const Quiz = () => {
 
     return (
         <div>
+            {console.log('llll',(result.correctAnswers/(result.correctAnswers+result.wrongAnswers)*100).toFixed(0))}
+            {/* {console.log('llll',result.correctAnswers,result.wrongAnswers)} */}
             {/* card */}
             <div className='card'>
                 <div className="progress-bar" style={{ width: `${(activeQuestion + 1) * 5}%` }}></div>
@@ -120,12 +122,14 @@ const Quiz = () => {
                 <div className="score-range">
                     <div className="txt">
                         <h3>Score: {result.score}%</h3>
+                        {/* <h3>Score: {(result?.correctAnswers/(result?.correctAnswers+result?.wrongAnswers)*100).toFixed(0)}%</h3> */}
                         <h3>Max Score: 75%</h3>
                     </div>
                     <div className="range">
-                        <div style={{width: '10%'}} className="ft ft-1"></div>
-                        <div className="ft ft-2"></div>
-                        <div className="ft ft-3"></div>
+                        {/* <div style={{width: (result.correctAnswers/(result.correctAnswers+result.wrongAnswers)*100) ==='NaN' ? '' : (result.correctAnswers/(result.correctAnswers+result.wrongAnswers)*100).toFixed(0)+'%'}} className="ft ft-1"></div> */}
+                        <div style={{width: (result.correctAnswers/(result.correctAnswers+result.wrongAnswers)*100)}} className="ft ft-1"></div>
+                        {/* <div className="ft ft-2"></div>
+                        <div className="ft ft-3"></div> */}
                     </div>
                 </div>
             </div>
