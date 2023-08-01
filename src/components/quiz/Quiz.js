@@ -60,9 +60,27 @@ const Quiz = () => {
                         <small><strong>{questions[activeQuestion].category.replaceAll('%20', " ").replaceAll('%3A', ": ")}</strong></small>
                         <h1>Question {activeQuestion + 1} of {questions.length}</h1>
                         <div className="star">
+                            {questions[activeQuestion].difficulty === 'hard' && 
+                                <>
+                            <RxStarFilled style={{ color: 'orange' }} />
+                            <RxStarFilled style={{ color: 'orange' }} />
+                            <RxStarFilled style={{ color: 'orange' }} />
+                                </>
+                            }
+                            {questions[activeQuestion].difficulty === 'medium' && 
+                                <>
                             <RxStarFilled style={{ color: 'orange' }} />
                             <RxStarFilled style={{ color: 'orange' }} />
                             <RxStarFilled style={{ color: 'grey' }} />
+                                </>
+                            }
+                            {questions[activeQuestion].difficulty === 'easy' && 
+                                <>
+                            <RxStarFilled style={{ color: 'orange' }} />
+                            <RxStarFilled style={{ color: 'grey' }} />
+                            <RxStarFilled style={{ color: 'grey' }} />
+                                </>
+                            }
                         </div>
                     </div>
                     <div className="right">
