@@ -96,7 +96,6 @@ const Quiz = () => {
                 <div className="second-block">
                     <div className="form">
                         <h1 className="question">
-                            {/* {v.question} */}
                             {questions[activeQuestion].question.replaceAll("%20", " ").replaceAll("%70", " ").replaceAll("%27", "'").replaceAll("%3F", "?")}
                         </h1>
                         <div className="choices">
@@ -104,19 +103,9 @@ const Quiz = () => {
                                 <h3
                                     onClick={() => onAnswerSelected(a,ii)} 
                                     key={ii}
-                                    // className={selectedAnswerIndex === ii ? 'selected-answer' : null}
-                                    // className={selectedAnswer ? 'selected-answer' : null}
-
-                                    // style={{backgroundColor: selectedAnswerIndex !==null && (a === questions[activeQuestion].correct_answer ? "#2ecc71": "darksalmon")}}
-
                                     style={{color: selectedAnswerIndex !==null && (a === questions[activeQuestion].correct_answer ? "#2ecc71" : "darksalmon")}}
 
-                                    // style={{color: selectedAnswerIndex !==null && (a === questions[activeQuestion].correct_answer && "#2ecc71")}}
-                                    // style={{backgroundColor: selectedAnswerIndex !==null && (a === questions[activeQuestion].correct_answer && "darksalmon")}}
-
-                                    // className={selectedAnswer ? 'selected-answer' : 'unselected-answer'}
                                 >{a.replaceAll("%20", " ")}</h3>
-                                // >{console.log(v.correct_answer)}</h3>
                             )}
 
                         </div>
@@ -134,7 +123,7 @@ const Quiz = () => {
                         <h3>Max Score: 75%</h3>
                     </div>
                     <div className="range">
-                        <div className="ft ft-1"></div>
+                        <div style={{width: '10%'}} className="ft ft-1"></div>
                         <div className="ft ft-2"></div>
                         <div className="ft ft-3"></div>
                     </div>
