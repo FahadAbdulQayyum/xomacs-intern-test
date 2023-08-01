@@ -33,6 +33,8 @@ const Quiz = () => {
         }else {
             setActiveQuestion(0);
         }
+        setSelectedAnswer('')
+        setSelectedAnswerIndex(null);
     }
 
     const onAnswerSelected = (answer,index) => {
@@ -49,8 +51,6 @@ const Quiz = () => {
 
     return (
         <div>
-            {/* {quiz} */}
-            {/* {console.log('questions[activeQuestion].incorrect_answers',questions[activeQuestion].incorrect_answers)} */}
             {/* card */}
             <div className='card'>
                 <div className="progress-bar" style={{ width: `${(activeQuestion + 1) * 5}%` }}></div>
@@ -78,18 +78,17 @@ const Quiz = () => {
                 <div className="second-block">
                     <div className="form">
                         <h1 className="question">
-                            {/* At the start of a standard game of the Monopoly, if you throw a double six, which square would you land on? */}
                             {/* {v.question} */}
                             {questions[activeQuestion].question.replaceAll("%20", " ").replaceAll("%70", " ").replaceAll("%27", "'").replaceAll("%3F", "?")}
                         </h1>
                         <div className="choices">
                             {[...questions[activeQuestion].incorrect_answers, questions[activeQuestion].correct_answer].map((a, ii) =>
                                 <h3
-                                    // onClick={() => checkAnswer(i, ii)} 
                                     onClick={() => onAnswerSelected(a,ii)} 
                                     key={ii}
                                     // className={selectedAnswerIndex === ii ? 'selected-answer' : null}
-                                    className={selectedAnswer ? 'selected-answer' : null}
+                                    // className={selectedAnswer ? 'selected-answer' : null}
+                                    style={{backgroundColor:a === questions[activeQuestion].correct_answer ? "#2ecc71": "darksalmon", color:"white"}}
                                     // className={selectedAnswer ? 'selected-answer' : 'unselected-answer'}
                                 >{a.replaceAll("%20", " ")}</h3>
                                 // >{console.log(v.correct_answer)}</h3>
@@ -106,7 +105,6 @@ const Quiz = () => {
                 </div>
                 <div className="score-range">
                     <div className="txt">
-                        {/* <h3>Score: 69%</h3> */}
                         <h3>Score: {result.score}%</h3>
                         <h3>Max Score: 75%</h3>
                     </div>

@@ -98,10 +98,15 @@ button:hover {
 }
 
 .card .second-block .form .choices h3:hover {
-  /* background-color: lightgray; */
-  background-color: var(--primaryColor);
+  background-color: lightgray;
+  /* background-color: var(--primaryColor); */
   cursor: pointer;
   color: white;
+}
+
+.card .second-block .form .choices .selected-answer{
+  /* background-color: coral; */
+  background-color: darksalmon;
 }
 
 /* .card .second-block .form .choices h3:active {
@@ -177,15 +182,4 @@ button:hover {
   width: 80%;
   background-color: var(--range3rd);
   z-index: 1;
-}
-
-.card .second-block .form .choices .selected-answer{
-  /* background-color: coral; */
-  background-color: darksalmon;
-}
-
-.card .second-block .form .choices .unselected-answer{
-  /* background-color: coral; */
-  /* background-color: var(--primaryColor); */
-  background-color: lightgray;
 }
