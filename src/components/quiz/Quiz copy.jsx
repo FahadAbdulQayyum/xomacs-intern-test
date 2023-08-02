@@ -1,6 +1,6 @@
 
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { RxLapTimer, RxStarFilled } from "react-icons/rx";
 import questions from '../../questions.json';
 import { useStopwatch } from 'react-timer-hook';
@@ -31,9 +31,6 @@ const Quiz = () => {
     
     let resultRange = 0, resultRangeClr = '';
 
-    // let choicee = []
-    let [choicee, setChoicee] = useState([])
-
     const nextQuestion = () => {
         if(activeQuestion <= questions.length-2){
             setActiveQuestion(prev => prev + 1);
@@ -56,14 +53,9 @@ const Quiz = () => {
         setSelectedAnswerIndex(null);
     }
 
-
-    useEffect(()=>{
-        setChoicee([...questions[activeQuestion].incorrect_answers, questions[activeQuestion].correct_answer].sort(() => Math.random() - 0.5))
-    },[activeQuestion]);
-
     const onAnswerSelected = (answer,index) => {
         setSelectedAnswerIndex(index)
-        console.log('answer',answer);
+        console.log('answewr',answer);
         if (answer === questions[activeQuestion].correct_answer) {
           setSelectedAnswer(true)
           console.log('right')
@@ -126,8 +118,7 @@ const Quiz = () => {
                             {questions[activeQuestion].question.replaceAll("%20", " ").replaceAll("%70", " ").replaceAll("%27", "'").replaceAll("%3F", "?")}
                         </h1>
                         <div className="choices">
-                            {/* {[...questions[activeQuestion].incorrect_answers, questions[activeQuestion].correct_answer].sort(() => Math.random() - 0.5).map((a, ii) => */}
-                            {choicee.map((a, ii) =>
+                            {[...questions[activeQuestion].incorrect_answers, questions[activeQuestion].correct_answer].map((a, ii) =>
                                 <h3
                                     onClick={() => onAnswerSelected(a,ii)}
                                     key={ii}

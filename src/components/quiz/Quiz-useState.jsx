@@ -1,6 +1,4 @@
-
-
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { RxLapTimer, RxStarFilled } from "react-icons/rx";
 import questions from '../../questions.json';
 import { useStopwatch } from 'react-timer-hook';
@@ -29,10 +27,10 @@ const Quiz = () => {
         wrongAnswers: 0,
     })
     
-    let resultRange = 0, resultRangeClr = '';
+    // let resultRange = 0, resultRangeClr = '';
 
-    // let choicee = []
-    let [choicee, setChoicee] = useState([])
+    let [resultRange, setResultRange] = useState(0);
+    let [resultRangeClr, setResultRangeClr] = useState('');
 
     const nextQuestion = () => {
         if(activeQuestion <= questions.length-2){
@@ -56,11 +54,6 @@ const Quiz = () => {
         setSelectedAnswerIndex(null);
     }
 
-
-    useEffect(()=>{
-        setChoicee([...questions[activeQuestion].incorrect_answers, questions[activeQuestion].correct_answer].sort(() => Math.random() - 0.5))
-    },[activeQuestion]);
-
     const onAnswerSelected = (answer,index) => {
         setSelectedAnswerIndex(index)
         console.log('answer',answer);
@@ -75,9 +68,9 @@ const Quiz = () => {
 
     return (
         <div>
-            {(result.correctAnswers+result.wrongAnswers) === questions.length+1 ? resultRange = 0 : resultRange = result.correctAnswers+result.wrongAnswers }
-            {(result.correctAnswers+result.wrongAnswers)>14 && (result.correctAnswers > 14 ) ? resultRangeClr = "green" : "red"}
-            {(result.correctAnswers+result.wrongAnswers)>14 && (result.correctAnswers > 9 && result.wrongAnswers > 4) ? resultRangeClr = "yellow" : "red"}
+            {(result.correctAnswers+result.wrongAnswers) === questions.length+1 ? setResultRange(0) : setResultRange(result.correctAnswers+result.wrongAnswers)}
+            {(result.correctAnswers+result.wrongAnswers)>14 && (result.correctAnswers > 14 ) ? setResultRangeClr("green") : setResultRangeClr("red")}
+            {(result.correctAnswers+result.wrongAnswers)>14 && (result.correctAnswers > 9 && result.wrongAnswers > 4) ? setResultRangeClr("yellow") : setResultRangeClr("red")}
             {/* card */}
             <div className='card'>
                 <div className="progress-bar" style={{ width: `${(activeQuestion + 1) * 5}%` }}></div>
@@ -126,8 +119,7 @@ const Quiz = () => {
                             {questions[activeQuestion].question.replaceAll("%20", " ").replaceAll("%70", " ").replaceAll("%27", "'").replaceAll("%3F", "?")}
                         </h1>
                         <div className="choices">
-                            {/* {[...questions[activeQuestion].incorrect_answers, questions[activeQuestion].correct_answer].sort(() => Math.random() - 0.5).map((a, ii) => */}
-                            {choicee.map((a, ii) =>
+                            {[...questions[activeQuestion].incorrect_answers, questions[activeQuestion].correct_answer].map((a, ii) =>
                                 <h3
                                     onClick={() => onAnswerSelected(a,ii)}
                                     key={ii}
