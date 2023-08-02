@@ -75,9 +75,11 @@ const Quiz = () => {
 
     return (
         <div>
-            {(result.correctAnswers+result.wrongAnswers) === questions.length+1 ? resultRange = 0 : resultRange = result.correctAnswers+result.wrongAnswers }
-            {(result.correctAnswers+result.wrongAnswers)>14 && (result.correctAnswers > 14 ) ? resultRangeClr = "green" : "red"}
-            {(result.correctAnswers+result.wrongAnswers)>14 && (result.correctAnswers > 9 && result.wrongAnswers > 4) ? resultRangeClr = "yellow" : "red"}
+            <div style={{display:'none'}}>
+                {(result.correctAnswers+result.wrongAnswers) === questions.length+1 ? resultRange = 0 : resultRange = result.correctAnswers+result.wrongAnswers }
+                {(result.correctAnswers+result.wrongAnswers)>14 && (result.correctAnswers > 14 ) ? resultRangeClr = "green" : "red"}
+                {(result.correctAnswers+result.wrongAnswers)>14 && (result.correctAnswers > 9 && result.wrongAnswers > 4) ? resultRangeClr = "yellow" : "red"}
+            </div>
             {/* card */}
             <div className='card'>
                 <div className="progress-bar" style={{ width: `${(activeQuestion + 1) * 5}%` }}></div>
