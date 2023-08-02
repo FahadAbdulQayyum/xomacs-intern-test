@@ -1,9 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
 
 :root {
-  /* --primaryColor: lime;
-  --secondColor: limegreen; */
-
   --primaryColor: #2ecc71;
   --secondColor: #2ecb71;
 
@@ -98,7 +95,6 @@ button:hover {
   position: relative;
 }
 
-/* .card .second-block .form .choices .tick h3::after { */
 .tick {
   position: absolute;
   content: "✔";
@@ -107,7 +103,6 @@ button:hover {
   right: 20px;
 }
 
-/* .card .second-block .form .choices .cross h3::after { */
 .cross {
   position: absolute;
   content: "✖";
@@ -118,24 +113,13 @@ button:hover {
 
 .card .second-block .form .choices h3:hover {
   background-color: lightgray;
-  /* background-color: var(--primaryColor); */
   cursor: pointer;
   color: white;
 }
 
 .card .second-block .form .choices .selected-answer{
-  /* background-color: coral; */
   background-color: darksalmon;
 }
-
-/* .card .second-block .form .choices h3:active {
-  background-color: var(--primaryColor);
-} */
-
-/* .card .second-block .form .choices h3:nth-child(3) {
-  background-color: var(--secondColor);
-  color: white;
-} */
 
 .card .second-block .button,
 .card .second-block .remark {

@@ -1,5 +1,3 @@
-
-
 import { useEffect, useState } from "react";
 import { RxLapTimer, RxStarFilled } from "react-icons/rx";
 import questions from '../../questions.json';
