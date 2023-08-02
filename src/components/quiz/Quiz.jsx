@@ -23,22 +23,17 @@ const Quiz = () => {
     const [activeQuestion, setActiveQuestion] = useState(0)
     const [selectedAnswer, setSelectedAnswer] = useState('')
     const [selectedAnswerIndex, setSelectedAnswerIndex] = useState(null)
-    const [correctAnswer, setCorrectAnswer] = useState(0)
-    const [wrongAnswer, setWrongAnswer] = useState(0)
     const [result, setResult] = useState({
         score: 0,
         correctAnswers: 0,
         wrongAnswers: 0,
     })
-
-    const [choice, setChoice] = useState(...questions[activeQuestion].incorrect_answers, questions[activeQuestion].correct_answer);
-
-
-    // const { question } = questions
-    // setChoice(...questions[activeQuestion].incorrect_answers, questions[activeQuestion].correct_answer)
+    
+    let resultRange = 0, resultRangeClr = '';
 
     const nextQuestion = () => {
-        if(activeQuestion < questions.length-2){
+        if(activeQuestion <= questions.length-2){
+            console.log('activeQuestion',activeQuestion)
             setActiveQuestion(prev => prev + 1);
             setResult((prev) =>
             selectedAnswer
@@ -50,6 +45,9 @@ const Quiz = () => {
               : { ...prev, wrongAnswers: prev.wrongAnswers + 1 }
           )
         }else {
+            setResult((prev) => prev,result.score= 0,result.correctAnswers= 0,result.wrongAnswers= 0,
+                
+          )
             setActiveQuestion(0);
         }
         setSelectedAnswer('')
@@ -70,8 +68,9 @@ const Quiz = () => {
 
     return (
         <div>
-            {console.log('llll',(result.correctAnswers/(result.correctAnswers+result.wrongAnswers)*100).toFixed(0))}
-            {/* {console.log('llll',result.correctAnswers,result.wrongAnswers)} */}
+            {(result.correctAnswers+result.wrongAnswers) === questions.length+1 ? resultRange = 0 : resultRange = result.correctAnswers+result.wrongAnswers }
+            {(result.correctAnswers+result.wrongAnswers)>14 && (result.correctAnswers > 14 ) ? resultRangeClr = "green" : "red"}
+            {(result.correctAnswers+result.wrongAnswers)>14 && (result.correctAnswers > 9 && result.wrongAnswers > 4) ? resultRangeClr = "yellow" : "red"}
             {/* card */}
             <div className='card'>
                 <div className="progress-bar" style={{ width: `${(activeQuestion + 1) * 5}%` }}></div>
@@ -105,13 +104,10 @@ const Quiz = () => {
                         </div>
                     </div>
                     <div className="right">
-                        <div className="timer" 
-                        // style={{justifyContent:'center',alignItems:'center',textAlign:'center'}}
-                        >
+                        <div className="timer">
                             <span className="logo">
                                 <RxLapTimer />
                             </span>
-                            {/* <span className="time">&nbsp;00:45</span> */}
                             <span className="time">&nbsp;<MyStopwatch/></span>
                         </div>
                     </div>
@@ -144,14 +140,10 @@ const Quiz = () => {
                 <div className="score-range">
                     <div className="txt">
                         <h3>Score: {result.score}%</h3>
-                        {/* <h3>Score: {(result?.correctAnswers/(result?.correctAnswers+result?.wrongAnswers)*100).toFixed(0)}%</h3> */}
                         <h3>Max Score: 75%</h3>
                     </div>
                     <div className="range">
-                        {/* <div style={{width: (result.correctAnswers/(result.correctAnswers+result.wrongAnswers)*100) ==='NaN' ? '' : (result.correctAnswers/(result.correctAnswers+result.wrongAnswers)*100).toFixed(0)+'%'}} className="ft ft-1"></div> */}
-                        <div style={{width: (result.correctAnswers/(result.correctAnswers+result.wrongAnswers)*100)}} className="ft ft-1"></div>
-                        {/* <div className="ft ft-2"></div>
-                        <div className="ft ft-3"></div> */}
+                        <div style={{width: resultRange*5+'%', backgroundColor:resultRange > 0 ? resultRangeClr : 'transparent'}} className="ft ft-1"></div>
                     </div>
                 </div>
             </div>
