@@ -33,7 +33,6 @@ const Quiz = () => {
 
     const nextQuestion = () => {
         if(activeQuestion <= questions.length-2){
-            console.log('activeQuestion',activeQuestion)
             setActiveQuestion(prev => prev + 1);
             setResult((prev) =>
             selectedAnswer
