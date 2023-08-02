@@ -95,6 +95,25 @@ button:hover {
   border-radius: 10px;
   color: grey;
   font-weight: 500;
+  position: relative;
+}
+
+/* .card .second-block .form .choices .tick h3::after { */
+.tick {
+  position: absolute;
+  content: "✔";
+  color: var(--primaryColor);
+  top: center;
+  right: 20px;
+}
+
+/* .card .second-block .form .choices .cross h3::after { */
+.cross {
+  position: absolute;
+  content: "✖";
+  color: var(--range1st);
+  top: center;
+  right: 20px;
 }
 
 .card .second-block .form .choices h3:hover {

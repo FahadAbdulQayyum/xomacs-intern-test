@@ -128,13 +128,14 @@ const Quiz = () => {
                             {questions[activeQuestion].question.replaceAll("%20", " ").replaceAll("%70", " ").replaceAll("%27", "'").replaceAll("%3F", "?")}
                         </h1>
                         <div className="choices">
+                            {/* {[...questions[activeQuestion].incorrect_answers, questions[activeQuestion].correct_answer].sort(() => Math.random() - 0.5).map((a, ii) => */}
                             {choicee.map((a, ii) =>
                                 <h3
                                     onClick={() => onAnswerSelected(a,ii)}
                                     key={ii}
-                                    className={selectedAnswer ? "tick" : "cross"}
                                     style={{color: selectedAnswerIndex !==null && (a === questions[activeQuestion].correct_answer ? "#2ecc71" : "darksalmon")}}
-                                >{a.replaceAll("%20", " ")}{selectedAnswerIndex && <span className={!(a === questions[activeQuestion].correct_answer) ? "cross" : "tick"}>{a === questions[activeQuestion].correct_answer ? "✔" : "✖"}</span>}</h3>
+
+                                >{a.replaceAll("%20", " ")}</h3>
                             )}
 
                         </div>
