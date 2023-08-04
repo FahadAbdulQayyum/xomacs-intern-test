@@ -154,6 +154,7 @@ const Quiz = () => {
                     </div>
                 </div>
             </div>
+            <small><strong>Get the source code from git: <a href="https://github.com/FahadAbdulQayyum/xomacs-intern-test">Interview Test</a></strong></small>
         </div>
     )
 }
