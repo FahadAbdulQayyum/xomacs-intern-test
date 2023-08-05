@@ -1,5 +1,3 @@
-import React from 'react'
-
 const BarCalculation = ({result,questions, setResultRange, setResultRangeClr}) => {
     return (
         <div style={{ display: 'none' }}>

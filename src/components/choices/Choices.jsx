@@ -16,4 +16,4 @@ const Choices = ({choicee, selectedAnswer, selectedAnswerIndex, questions, activ
     )
 }
 
-export default Choices
+export default Choices;

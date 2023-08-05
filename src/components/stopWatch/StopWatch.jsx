@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { useStopwatch, useTimer } from 'react-timer-hook';
 
 
-// const StopWatch = ({ expiryTimestamp, setExpired}) => {
 const StopWatch = ({ expiryTimestamp, setExpired, nextQuest, setNextQuest}) => {
     const {
         seconds,

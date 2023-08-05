@@ -9,10 +9,9 @@ const Score = ({result, resultRange, resultRangeClr}) => {
             </div>
             <div className="range">
                 <div style={{ width: resultRange * 5 + '%', backgroundColor: resultRange > 0 ? resultRangeClr : 'transparent' }} className="ft ft-1"></div>
-                {console.log('resultRange,resultRangeClr',resultRange,resultRangeClr)}
             </div>
         </div>
     )
 }
 
-export default Score
+export default Score;
