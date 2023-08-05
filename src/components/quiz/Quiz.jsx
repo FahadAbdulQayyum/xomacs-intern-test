@@ -156,7 +156,9 @@ const Quiz = () => {
                 <div className="score-range">
                     <div className="txt">
                         <h3>Score: {result.score}%</h3>
-                        <h3>Max Score: 75%</h3>
+                        {/* <h3>Max Score: {100 - (result.wrongAnswers)*5}%</h3> */}
+                        {/* <h3>Max Score: {100 - (result.correctAnswers)*5}%</h3> */}
+                        <h3>Max Score: {100 - (result.correctAnswers+result.wrongAnswers)*5}%</h3>
                     </div>
                     <div className="range">
                         <div style={{ width: resultRange * 5 + '%', backgroundColor: resultRange > 0 ? resultRangeClr : 'transparent' }} className="ft ft-1"></div>
