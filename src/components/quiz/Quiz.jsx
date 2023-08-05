@@ -1,53 +1,51 @@
 import { useEffect, useState } from "react";
 import { RxLapTimer, RxStarFilled } from "react-icons/rx";
 import questions from '../../questions.json';
-import { useStopwatch } from 'react-timer-hook';
-
-function MyStopwatch() {
-  const {
-    seconds,
-    minutes,
-  } = useStopwatch({ autoStart: true });
-
-
-  return (
-      <>
-        <span>{(minutes < 10) ? '0'+ minutes : minutes}</span>:<span>{(seconds < 10) ? '0'+(seconds) : seconds}</span>
-      </>
-  );
-}
+import MyStopwatch from '../stopWatch/StopWatch';
 
 const Quiz = () => {
     const [activeQuestion, setActiveQuestion] = useState(0)
     const [selectedAnswer, setSelectedAnswer] = useState('')
     const [selectedAnswerIndex, setSelectedAnswerIndex] = useState(null)
+    const [expired, setExpired] = useState(false);
     const [result, setResult] = useState({
         score: 0,
         correctAnswers: 0,
         wrongAnswers: 0,
     })
-    
+
     let resultRange = 0, resultRangeClr = '';
 
     // let choicee = []
     let [choicee, setChoicee] = useState([])
 
+    let expiryTimestamp = new Date();
+    expiryTimestamp.setSeconds(expiryTimestamp.getSeconds() + 47);
+    // expiryTimestamp.setSeconds(expiryTimestamp.getSeconds() + 5);
+    // expiryTimestamp.setSeconds(expiryTimestamp.getSeconds() + 2);
+
     const nextQuestion = () => {
-        if(activeQuestion <= questions.length-2){
+        // setSelectedAnswerIndex === null && alert('Kindly select any choice')
+        if(selectedAnswerIndex === null){
+            return alert('Kindly select any choice')
+        } 
+        // setSelectedAnswer === null && alert('Kindly select any choice')
+        // selectedAnswer && console.log('console.loggg')
+        if (activeQuestion <= questions.length - 2) {
             setActiveQuestion(prev => prev + 1);
             setResult((prev) =>
-            selectedAnswer
-              ? {
-                  ...prev,
-                  score: prev.score + 5,
-                  correctAnswers: prev.correctAnswers + 1,
-                }
-              : { ...prev, wrongAnswers: prev.wrongAnswers + 1 }
-          )
-        }else {
-            setResult((prev) => prev,result.score= 0,result.correctAnswers= 0,result.wrongAnswers= 0,
-                
-          )
+                selectedAnswer
+                    ? {
+                        ...prev,
+                        score: prev.score + 5,
+                        correctAnswers: prev.correctAnswers + 1,
+                    }
+                    : { ...prev, wrongAnswers: prev.wrongAnswers + 1 }
+            )
+        } else {
+            setResult((prev) => prev, result.score = 0, result.correctAnswers = 0, result.wrongAnswers = 0,
+
+            )
             setActiveQuestion(0);
         }
         setSelectedAnswer('')
@@ -55,28 +53,39 @@ const Quiz = () => {
     }
 
 
-    useEffect(()=>{
+    useEffect(() => {
+        // selectedAnswerIndex!==null && setActiveQuestion(prev => prev + 1)
         setChoicee([...questions[activeQuestion].incorrect_answers, questions[activeQuestion].correct_answer].sort(() => Math.random() - 0.5))
-    },[activeQuestion]);
+        console.log('useefect1')
+    }, [activeQuestion]);
+    // }, [selectedAnswerIndex!==null && activeQuestion]);
+    
+    useEffect(() => {
+        // (expired && selectedAnswerIndex!==null ) && setActiveQuestion(prev => prev + 1)
+        console.log('useefect2')
+        expired && setActiveQuestion(prev => prev + 1)
+        activeQuestion === questions.length - 1 && setActiveQuestion(0)
+        setExpired(false)
+    }, [expired]);
 
-    const onAnswerSelected = (answer,index) => {
+    const onAnswerSelected = (answer, index) => {
         setSelectedAnswerIndex(index)
-        console.log('answer',answer);
+        console.log('answer', answer);
         if (answer === questions[activeQuestion].correct_answer) {
-          setSelectedAnswer(true)
-          console.log('right')
+            setSelectedAnswer(true)
+            console.log('right')
         } else {
-          setSelectedAnswer(false)
-          console.log('wrong')
+            setSelectedAnswer(false)
+            console.log('wrong')
         }
-      }
+    }
 
     return (
         <div>
-            <div style={{display:'none'}}>
-                {(result.correctAnswers+result.wrongAnswers) === questions.length+1 ? resultRange = 0 : resultRange = result.correctAnswers+result.wrongAnswers }
-                {(result.correctAnswers+result.wrongAnswers)>14 && (result.correctAnswers > 14 ) ? resultRangeClr = "green" : "red"}
-                {(result.correctAnswers+result.wrongAnswers)>14 && (result.correctAnswers > 9 && result.wrongAnswers > 4) ? resultRangeClr = "yellow" : "red"}
+            <div style={{ display: 'none' }}>
+                {(result.correctAnswers + result.wrongAnswers) === questions.length + 1 ? resultRange = 0 : resultRange = result.correctAnswers + result.wrongAnswers}
+                {(result.correctAnswers + result.wrongAnswers) > 14 && (result.correctAnswers > 14) ? resultRangeClr = "green" : "red"}
+                {(result.correctAnswers + result.wrongAnswers) > 14 && (result.correctAnswers > 9 && result.wrongAnswers > 4) ? resultRangeClr = "yellow" : "red"}
             </div>
             {/* card */}
             <div className='card'>
@@ -84,28 +93,28 @@ const Quiz = () => {
                 {/* 1st block */}
                 <div className="first-block">
                     <div className="left">
-                        <small><strong>{questions[activeQuestion].category.replaceAll('%20', " ").replaceAll('%3A', ": ")}</strong></small>
+                        <small><strong>{questions[activeQuestion].category.replaceAll('%20', " ").replaceAll('%26', " ").replaceAll('%3A', ": ")}</strong></small>
                         <h1>Question {activeQuestion + 1} of {questions.length}</h1>
                         <div className="star">
                             {questions[activeQuestion].difficulty === 'hard' &&
                                 <>
-                            <RxStarFilled style={{ color: 'orange' }} />
-                            <RxStarFilled style={{ color: 'orange' }} />
-                            <RxStarFilled style={{ color: 'orange' }} />
+                                    <RxStarFilled style={{ color: 'orange' }} />
+                                    <RxStarFilled style={{ color: 'orange' }} />
+                                    <RxStarFilled style={{ color: 'orange' }} />
                                 </>
                             }
                             {questions[activeQuestion].difficulty === 'medium' &&
                                 <>
-                            <RxStarFilled style={{ color: 'orange' }} />
-                            <RxStarFilled style={{ color: 'orange' }} />
-                            <RxStarFilled style={{ color: 'grey' }} />
+                                    <RxStarFilled style={{ color: 'orange' }} />
+                                    <RxStarFilled style={{ color: 'orange' }} />
+                                    <RxStarFilled style={{ color: 'grey' }} />
                                 </>
                             }
                             {questions[activeQuestion].difficulty === 'easy' &&
                                 <>
-                            <RxStarFilled style={{ color: 'orange' }} />
-                            <RxStarFilled style={{ color: 'grey' }} />
-                            <RxStarFilled style={{ color: 'grey' }} />
+                                    <RxStarFilled style={{ color: 'orange' }} />
+                                    <RxStarFilled style={{ color: 'grey' }} />
+                                    <RxStarFilled style={{ color: 'grey' }} />
                                 </>
                             }
                         </div>
@@ -115,7 +124,10 @@ const Quiz = () => {
                             <span className="logo">
                                 <RxLapTimer />
                             </span>
-                            <span className="time">&nbsp;<MyStopwatch/></span>
+                            <span className="time">&nbsp;<MyStopwatch
+                                expiryTimestamp={expiryTimestamp}
+                                setExpired={setExpired}
+                            /></span>
                         </div>
                     </div>
                 </div>
@@ -123,22 +135,22 @@ const Quiz = () => {
                 <div className="second-block">
                     <div className="form">
                         <h1 className="question">
-                            {questions[activeQuestion].question.replaceAll("%20", " ").replaceAll("%70", " ").replaceAll("%27", "'").replaceAll("%3F", "?")}
+                            {questions[activeQuestion].question.replaceAll("%20", " ").replaceAll("%22", " ").replaceAll("%2C", " ").replaceAll("%70", " ").replaceAll("%27", "'").replaceAll("%3F", "?")}
                         </h1>
                         <div className="choices">
                             {choicee.map((a, ii) =>
                                 <h3
-                                    onClick={() => onAnswerSelected(a,ii)}
+                                    onClick={() => onAnswerSelected(a, ii)}
                                     key={ii}
                                     className={selectedAnswer ? "tick" : "cross"}
-                                    style={{color: selectedAnswerIndex !==null && (a === questions[activeQuestion].correct_answer ? "#2ecc71" : "darksalmon")}}
-                                >{a.replaceAll("%20", " ")}{selectedAnswerIndex && <span className={!(a === questions[activeQuestion].correct_answer) ? "cross" : "tick"}>{a === questions[activeQuestion].correct_answer ? "✔" : "✖"}</span>}</h3>
+                                    style={{ color: selectedAnswerIndex !== null && (a === questions[activeQuestion].correct_answer ? "#2ecc71" : "darksalmon") }}
+                                >{a.replaceAll("%20", " ").replaceAll("%24", " ").replaceAll("%2C", " ")}{selectedAnswerIndex && <span className={!(a === questions[activeQuestion].correct_answer) ? "cross" : "tick"}>{a === questions[activeQuestion].correct_answer ? "✔" : "✖"}</span>}</h3>
                             )}
 
                         </div>
                     </div>
                     <div className="remark">
-                        <h1 style={{color: selectedAnswer ? 'green' : 'red'}}>{selectedAnswerIndex === null ? ' ' : selectedAnswer ? 'Correct!' : 'Sorry'}</h1>
+                        <h1 style={{ color: selectedAnswer ? 'green' : 'red' }}>{selectedAnswerIndex === null ? ' ' : selectedAnswer ? 'Correct!' : 'Sorry'}</h1>
                     </div>
                     <div className="button">
                         <button onClick={nextQuestion}>Next Question</button>
@@ -150,7 +162,7 @@ const Quiz = () => {
                         <h3>Max Score: 75%</h3>
                     </div>
                     <div className="range">
-                        <div style={{width: resultRange*5+'%', backgroundColor:resultRange > 0 ? resultRangeClr : 'transparent'}} className="ft ft-1"></div>
+                        <div style={{ width: resultRange * 5 + '%', backgroundColor: resultRange > 0 ? resultRangeClr : 'transparent' }} className="ft ft-1"></div>
                     </div>
                 </div>
             </div>
