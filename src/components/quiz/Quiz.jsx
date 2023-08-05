@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { RxLapTimer, RxStarFilled } from "react-icons/rx";
+import { RxCross1, RxLapTimer, RxStarFilled } from "react-icons/rx";
 import questions from '../../questions.json';
 import MyStopwatch from '../stopWatch/StopWatch';
+import { FaCheck, FaCross } from 'react-icons/fa';
 
 const Quiz = () => {
     const [activeQuestion, setActiveQuestion] = useState(0)
@@ -144,7 +145,8 @@ const Quiz = () => {
                                     key={ii}
                                     className={selectedAnswer ? "tick" : "cross"}
                                     style={{ color: selectedAnswerIndex !== null && (a === questions[activeQuestion].correct_answer ? "#2ecc71" : "darksalmon") }}
-                                >{a.replaceAll("%20", " ").replaceAll("%24", " ").replaceAll("%2C", " ")}{selectedAnswerIndex && <span className={!(a === questions[activeQuestion].correct_answer) ? "cross" : "tick"}>{a === questions[activeQuestion].correct_answer ? "✔" : "✖"}</span>}</h3>
+                                // >{a.replaceAll("%20", " ").replaceAll("%24", " ").replaceAll("%2C", " ")}{selectedAnswerIndex && <span className={!(a === questions[activeQuestion].correct_answer) ? "cross" : "tick"}>{a === questions[activeQuestion].correct_answer ? "✔" : "✖"}</span>}</h3>
+                                >{a.replaceAll("%20", " ").replaceAll("%24", " ").replaceAll("%2C", " ")}{selectedAnswerIndex && <span className={!(a === questions[activeQuestion].correct_answer) ? "cross" : "tick"}>{a === questions[activeQuestion].correct_answer ? <FaCheck/> : <RxCross1/>}</span>}</h3>
                             )}
 
                         </div>
