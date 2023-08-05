@@ -186,3 +186,8 @@ button:hover {
   background-color: var(--range3rd);
   z-index: 1;
 }
+
+strong#strong {
+  display: flex;
+  justify-content: center;
+}
