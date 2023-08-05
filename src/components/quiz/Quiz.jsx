@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import { RxCross1, RxLapTimer, RxStarFilled } from "react-icons/rx";
+import { RxLapTimer } from "react-icons/rx";
 import questions from '../../questions.json';
 import MyStopwatch from '../stopWatch/StopWatch';
-import { FaCheck } from 'react-icons/fa';
 import Level from "../level/Level";
 import BarCalculation from "../barCalculation/BarCalculation";
 import Choices from "../choices/Choices";
@@ -20,7 +19,6 @@ const Quiz = () => {
         wrongAnswers: 0,
     })
 
-    // let resultRange = 0, resultRangeClr = '';
     const [resultRange, setResultRange] = useState(0);
     const [resultRangeClr, setResultRangeClr] = useState('');
 
