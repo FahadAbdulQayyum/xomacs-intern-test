@@ -25,12 +25,9 @@ const Quiz = () => {
     // expiryTimestamp.setSeconds(expiryTimestamp.getSeconds() + 2);
 
     const nextQuestion = () => {
-        // setSelectedAnswerIndex === null && alert('Kindly select any choice')
         if(selectedAnswerIndex === null){
             return alert('Kindly select any choice')
         } 
-        // setSelectedAnswer === null && alert('Kindly select any choice')
-        // selectedAnswer && console.log('console.loggg')
         if (activeQuestion <= questions.length - 2) {
             setActiveQuestion(prev => prev + 1);
             setResult((prev) =>
@@ -69,7 +66,7 @@ const Quiz = () => {
     }, [expired]);
 
     const onAnswerSelected = (answer, index) => {
-        setSelectedAnswerIndex(index)
+        setSelectedAnswerIndex(index);
         console.log('answer', answer);
         if (answer === questions[activeQuestion].correct_answer) {
             setSelectedAnswer(true)
@@ -140,7 +137,7 @@ const Quiz = () => {
                         <div className="choices">
                             {choicee.map((a, ii) =>
                                 <h3
-                                    onClick={() => onAnswerSelected(a, ii)}
+                                    onClick={() => (selectedAnswerIndex === null) && onAnswerSelected(a, ii)}
                                     key={ii}
                                     className={selectedAnswer ? "tick" : "cross"}
                                     style={{ color: selectedAnswerIndex !== null && (a === questions[activeQuestion].correct_answer ? "#2ecc71" : "darksalmon") }}
