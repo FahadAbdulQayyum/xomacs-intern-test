@@ -8,6 +8,7 @@ const Quiz = () => {
     const [selectedAnswer, setSelectedAnswer] = useState('')
     const [selectedAnswerIndex, setSelectedAnswerIndex] = useState(null)
     const [expired, setExpired] = useState(false);
+    const [nextQuest, setNextQuest] = useState(false);
     const [result, setResult] = useState({
         score: 0,
         correctAnswers: 0,
@@ -30,6 +31,7 @@ const Quiz = () => {
         } 
         if (activeQuestion <= questions.length - 2) {
             setActiveQuestion(prev => prev + 1);
+            setNextQuest(true)
             setResult((prev) =>
                 selectedAnswer
                     ? {
@@ -48,7 +50,6 @@ const Quiz = () => {
         setSelectedAnswer('')
         setSelectedAnswerIndex(null);
     }
-
 
     useEffect(() => {
         // selectedAnswerIndex!==null && setActiveQuestion(prev => prev + 1)
@@ -124,6 +125,8 @@ const Quiz = () => {
                             <span className="time">&nbsp;<MyStopwatch
                                 expiryTimestamp={expiryTimestamp}
                                 setExpired={setExpired}
+                                nextQuest={nextQuest}
+                                setNextQuest={setNextQuest}
                             /></span>
                         </div>
                     </div>

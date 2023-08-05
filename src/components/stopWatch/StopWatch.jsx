@@ -2,12 +2,19 @@ import { useEffect } from 'react';
 import { useStopwatch, useTimer } from 'react-timer-hook';
 
 
-const StopWatch = ({ expiryTimestamp, setExpired }) => {
+// const StopWatch = ({ expiryTimestamp, setExpired}) => {
+const StopWatch = ({ expiryTimestamp, setExpired, nextQuest, setNextQuest}) => {
     const {
         seconds,
         minutes,
         restart,
     } = useTimer({ expiryTimestamp, autoStart: true, onExpire: () => setExpired(true) });
+
+    useEffect(()=>{
+        restart(expiryTimestamp)
+        setNextQuest(false)
+    // },[])
+    },[nextQuest===true])
 
     return (
         <>
