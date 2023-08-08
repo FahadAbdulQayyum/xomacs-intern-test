@@ -187,7 +187,28 @@ button:hover {
   z-index: 1;
 }
 
-strong#strong {
+/* strong#strong {
   display: flex;
   justify-content: center;
+} */
+
+.notFound {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 700px;
+  font-weight: bold;
+  font-size: larger;
+}
+
+.setOrange {
+  color: orange;
+}
+
+.setGrey {
+  color: grey;
+}
+
+.displayNone {
+  display: none;
 }

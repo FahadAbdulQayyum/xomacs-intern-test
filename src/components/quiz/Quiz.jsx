@@ -6,6 +6,7 @@ import Level from "../level/Level";
 import BarCalculation from "../barCalculation/BarCalculation";
 import Choices from "../choices/Choices";
 import Score from "../score/Score";
+import decryptJson from "../decrypt-json/decryptJson";
 
 const Quiz = () => {
     const [activeQuestion, setActiveQuestion] = useState(0)
@@ -65,13 +66,10 @@ const Quiz = () => {
 
     const onAnswerSelected = (answer, index) => {
         setSelectedAnswerIndex(index);
-        console.log('answer', answer);
         if (answer === questions[activeQuestion].correct_answer) {
             setSelectedAnswer(true)
-            console.log('right')
         } else {
             setSelectedAnswer(false)
-            console.log('wrong')
         }
     }
 
@@ -83,7 +81,7 @@ const Quiz = () => {
                 {/* 1st block */}
                 <div className="first-block">
                     <div className="left">
-                        <small><strong>{questions[activeQuestion].category.replaceAll('%20', " ").replaceAll('%26', " ").replaceAll('%3A', ": ")}</strong></small>
+                        <small><strong>{decryptJson(questions[activeQuestion].category)}</strong></small>
                         <h1>Question {activeQuestion + 1} of {questions.length}</h1>
                         <div className="star">
                             <Level level={questions[activeQuestion].difficulty} />
@@ -110,9 +108,11 @@ const Quiz = () => {
                 <div className="second-block">
                     <div className="form">
                         <h1 className="question">
-                            {questions[activeQuestion].question.replaceAll("%20", " ").replaceAll("%22", " ").replaceAll("%2C", " ").replaceAll("%70", " ").replaceAll("%27", "'").replaceAll("%3F", "?")}
+                            {decryptJson(questions[activeQuestion].question)}
                         </h1>
-                        <Choices choicee={choicee} selectedAnswer={selectedAnswer} selectedAnswerIndex={selectedAnswerIndex}
+                        <Choices choicee={choicee} 
+                            selectedAnswer={selectedAnswer} 
+                            selectedAnswerIndex={selectedAnswerIndex}
                             questions={questions}
                             activeQuestion={activeQuestion}
                             onAnswerSelected={onAnswerSelected}
@@ -128,7 +128,6 @@ const Quiz = () => {
                 <Score result={result} resultRange={resultRange} resultRangeClr={resultRangeClr} />
                 <BarCalculation result={result} questions={questions} setResultRange={setResultRange} setResultRangeClr={setResultRangeClr} />
             </div>
-            <small><strong id="strong">Get the source code from git:&nbsp;&nbsp;<a href="https://github.com/FahadAbdulQayyum/xomacs-intern-test">Interview Test</a></strong></small>
         </div>
     )
 }

@@ -4,22 +4,22 @@ const Level = ({level}) => {
   return (
     (level==="hard") ? 
         <>
-            <RxStarFilled style={{ color: 'orange' }} />
-            <RxStarFilled style={{ color: 'orange' }} />
-            <RxStarFilled style={{ color: 'orange' }} />
+            <RxStarFilled className="setOrange" />
+            <RxStarFilled className="setOrange" />
+            <RxStarFilled className="setOrange" />
         </> 
         :
         (level==="medium") ?
         <>
-            <RxStarFilled style={{ color: 'orange' }} />
-            <RxStarFilled style={{ color: 'orange' }} />
-            <RxStarFilled style={{ color: 'grey' }} />
+            <RxStarFilled className="setOrange" />
+            <RxStarFilled className="setOrange" />
+            <RxStarFilled className="setGrey" />
         </> 
         :
         <>
-            <RxStarFilled style={{ color: 'orange' }} />
-            <RxStarFilled style={{ color: 'grey' }} />
-            <RxStarFilled style={{ color: 'grey' }} />
+            <RxStarFilled className="setOrange" />
+            <RxStarFilled className="setGrey" />
+            <RxStarFilled className="setGrey" />
         </> 
   )
 }
