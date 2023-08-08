@@ -122,7 +122,7 @@ const Quiz = () => {
                         <h1 style={{ color: selectedAnswer ? 'green' : 'red' }}>{selectedAnswerIndex === null ? ' ' : selectedAnswer ? 'Correct!' : 'Sorry'}</h1>
                     </div>
                     <div className="button">
-                        <button onClick={nextQuestion}>Next Question</button>
+                        <button onClick={nextQuestion}>{activeQuestion!==19 ? 'Next Question' : 'Finish'}</button>
                     </div>
                 </div>
                 <Score result={result} resultRange={resultRange} resultRangeClr={resultRangeClr} />
