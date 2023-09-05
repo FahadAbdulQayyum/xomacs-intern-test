@@ -1,3 +1,4 @@
+// barCalculation  
 const BarCalculation = ({result,questions, setResultRange, setResultRangeClr}) => {
     return (
         <div className="displayNone">
