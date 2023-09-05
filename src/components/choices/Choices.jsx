@@ -2,6 +2,7 @@
 import { RxCross1 } from "react-icons/rx";
 // FaCheck fetched and imported from 'react-icons/fa'
 import { FaCheck } from 'react-icons/fa';
+// The decryptJson brought from the decryptJson file from the decrypt-json directory
 import decryptJson from "../decrypt-json/decryptJson";
 
 const Choices = ({choicee, selectedAnswer, selectedAnswerIndex, questions, activeQuestion, onAnswerSelected }) => {
