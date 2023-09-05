@@ -1,5 +1,6 @@
 // RxCross fetch and imported from 'react-icons/rx'
 import { RxCross1 } from "react-icons/rx";
+// FaCheck fetched and imported from 'react-icons/fa'
 import { FaCheck } from 'react-icons/fa';
 import decryptJson from "../decrypt-json/decryptJson";
 
